@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'Cagliostro';
+    src: url('/fonts/Cagliostro-Regular.woff2') format('woff2'),
+        url('/fonts/Cagliostro-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arkhip';
+    src: url('/fonts/Arkhip-Regular.woff2') format('woff2'),
+        url('/fonts/Arkhip-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
