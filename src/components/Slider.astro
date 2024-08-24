@@ -1,0 +1,99 @@
+---
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+---
+
+<div class="w-full px-[100px]">
+  <div class="swiper border border-[#AF9868] rounded-md">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="text-white w-full h-[600px] slide-1">
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="text-white w-full h-[600px] slide-2">
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="text-white w-full h-[600px] slide-3">
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="text-white w-full h-[600px] slide-4">
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="text-white w-full h-[600px] slide-5">
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</div>
+
+<script>
+  import Swiper from 'swiper';
+  import { Navigation, Pagination } from 'swiper/modules';
+
+  new Swiper('.swiper', {
+    modules: [Navigation, Pagination],
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    spaceBetween: 50,
+    slidesPerView: 1,
+    loop: true,
+    loopAdditionalSlides: 1,
+    cssMode: false,
+  });
+</script>
+
+<style>
+  .swiper {
+    width: 100%;
+    height: 600px;
+  }
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #AF9868;
+  }
+  .slide-1 {
+    background-image: url('/images/slide_1.png');
+    background-size: cover;
+    background-position: center;
+  }
+  .slide-2 {
+    background-image: url('/images/slide_2.png');
+    background-size: cover;
+    background-position: center;
+  }
+  .slide-3 {
+    background-image: url('/images/slide_3.png');
+    background-size: cover;
+    background-position: center;
+  }
+  .slide-4 {
+    background-image: url('/images/slide_4.png');
+    background-size: cover;
+    background-position: center;
+  }
+  .slide-5 {
+    background-image: url('/images/slide_5.png');
+    background-size: cover;
+    background-position: center;
+  }
+</style>

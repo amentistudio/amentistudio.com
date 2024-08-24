@@ -1,0 +1,121 @@
+---
+import Button from "./Button.astro";
+import PrimaryButton from "./PrimaryButton.astro";
+---
+
+<div class="flex flex-row justify-between gap-10 mx-10 mt-[300px]">
+  <nav class="font-arkhip text-gray-300 text-3xl">
+    <ul class="flex flex-col gap-4">
+      <li>
+        <a
+          href="#news"
+          class="hover:scale-110 transition-transform duration-300 ease-in-out"
+          >News</a
+        >
+      </li>
+      <li>
+        <a
+          href="#studio"
+          class="hover:scale-110 transition-transform duration-300 ease-in-out"
+          >Studio</a
+        >
+      </li>
+      <li>
+        <a
+          href="#game"
+          class="hover:scale-110 transition-transform duration-300 ease-in-out"
+          >Game</a
+        >
+      </li>
+      <li>
+        <a
+          href="#press-kit"
+          class="hover:scale-110 transition-transform duration-300 ease-in-out"
+          >Press Kit</a
+        >
+      </li>
+      <li>
+        <a
+          href="#contact"
+          class="hover:scale-110 transition-transform duration-300 ease-in-out"
+          >Contact</a
+        >
+      </li>
+    </ul>
+  </nav>
+
+  <div class="flex flex-col gap-4">
+    <PrimaryButton
+      href="https://store.steampowered.com/app/2092970/The_Book_of_Aaru/"
+      className="w-10">Play demo now!</PrimaryButton
+    >
+    <Button href="https://store.steampowered.com/app/2092970/The_Book_of_Aaru/"
+      >+ Add to wishlist</Button
+    >
+  </div>
+</div>
+
+<div class="max-w-md mx-auto mt-[100px]">
+  <p class="text-gray-300 text-center mt-10 mb-4 text-lg font-cagliostro">
+    Follow us:
+  </p>
+  <div class="flex flex-row justify-between gap-10">
+    <a
+      href="https://www.youtube.com/@AmentiStudio"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img src="/images/youtube.png" class="w-10" alt="Follow us on Youtube" />
+    </a>
+    <a
+      href="https://x.com/thebookofaaru"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img src="/images/twitter.png" class="w-10" alt="Follow us on Twitter" />
+    </a>
+    <a
+      href="https://www.instagram.com/thebookofaaru.byamenti/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="/images/instagram.png"
+        class="w-10"
+        alt="Follow us on Instagram"
+      />
+    </a>
+    <a
+      href="https://www.linkedin.com/company/amenti-studio"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="/images/linkedin.png"
+        class="w-10"
+        alt="Follow us on LinkedIn"
+      />
+    </a>
+    <a
+      href="https://www.facebook.com/people/The-Book-Of-Aaru-byAmenti-studio/100085460294670/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="/images/facebook.png"
+        class="w-10"
+        alt="Follow us on Facebook"
+      />
+    </a>
+  </div>
+</div>
+
+<div class="mx-auto mt-[100px]">
+  <img src="/images/logo_white.png" alt="Amenti logo" class="w-[150px]" />
+</div>
+
+<div
+  class="flex flex-col pt-[120px] pb-[30px] mt-[100px] text-gray-300 text-center text-lg font-cagliostro bg-[url('/images/footer.png')] bg-top bg-no-repeat"
+>
+  &copy; 2024 Amenti Studio - All rights reserved.
+</div>

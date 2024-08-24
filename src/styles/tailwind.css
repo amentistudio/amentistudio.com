@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .all-\[unset\] {
+    all: unset;
+  }
+}
+
+:root {
+  --abilities-colorsbuff: rgba(102, 253, 220, 1);
+  --abilities-colorsdebuff: rgba(59, 0, 0, 1);
+  --button-font-family: "Arkhip", Helvetica;
+  --button-font-size: 16px;
+  --button-font-style: normal;
+  --button-font-weight: 400;
+  --button-letter-spacing: 0px;
+  --button-line-height: normal;
+  --damage-glow: 1px 1px 5px 0px rgba(133, 9, 38, 1), 0px 0px 10px 0px rgba(133, 9, 38, 0.5);
+  --golden-frame-glow: 1px 1px 5px 0px rgba(236, 126, 15, 1), 0px 0px 10px 0px rgba(236, 126, 15, 0.5);
+  --golden-glow: 1px 1px 5px 0px rgba(236, 126, 15, 1), 0px 0px 10px 0px rgba(236, 126, 15, 0.5);
+  --health-glow: 1px 1px 5px 0px rgba(49, 154, 102, 1), 0px 0px 10px 0px rgba(49, 154, 102, 1);
+  --light-glow: 1px 1px 5px 0px rgba(255, 255, 255, 0.5), 0px 0px 10px 0px rgba(255, 255, 255, 0.5);
+  --main-copy-font-family: "Cagliostro", Helvetica;
+  --main-copy-font-size: 16px;
+  --main-copy-font-style: normal;
+  --main-copy-font-weight: 400;
+  --main-copy-letter-spacing: 0.32px;
+  --main-copy-line-height: 135.0000023841858%;
+  --main-headline-big-font-family: "Arkhip", Helvetica;
+  --main-headline-big-font-size: 48px;
+  --main-headline-big-font-style: normal;
+  --main-headline-big-font-weight: 400;
+  --main-headline-big-letter-spacing: -0.96px;
+  --main-headline-big-line-height: 89.99999761581421%;
+  --main-headline-font-family: "Arkhip", Helvetica;
+  --main-headline-font-size: 32px;
+  --main-headline-font-style: normal;
+  --main-headline-font-weight: 400;
+  --main-headline-letter-spacing: 0px;
+  --main-headline-line-height: normal;
+  --material-box: 0px 4px 8px 0px rgba(0, 0, 0, 0.25), 0px 2px 0px 0px rgba(0, 0, 0, 0.25);
+  --notes-font-family: "Caveat", Helvetica;
+  --notes-font-size: 32px;
+  --notes-font-style: normal;
+  --notes-font-weight: 700;
+  --notes-letter-spacing: 0px;
+  --notes-line-height: 145.00000476837158%;
+  --notification: 1px 1px 15px 0px rgba(219, 178, 98, 1), 0px 0px 10px 0px rgba(216, 140, 63, 0.5);
+  --primary-ui-colorsdark-background: rgba(15, 18, 24, 1);
+  --primary-ui-colorsdirt: rgba(115, 96, 63, 1);
+  --primary-ui-colorsiron: rgba(93, 96, 106, 1);
+  --primary-ui-colorsmud: rgba(52, 40, 18, 1);
+  --primary-ui-colorssand: rgba(189, 171, 135, 1);
+  --primary-ui-colorssnow: rgba(196, 203, 213, 1);
+  --primary-ui-texturescharcoal: rgba(12, 12, 14, 1);
+  --primary-ui-texturesvoid: rgba(12, 12, 14, 1);
+  --shadow-glow: 1px 1px 5px 0px rgba(112, 46, 196, 1), 0px 0px 10px 0px rgba(105, 38, 191, 0.6);
+  --sub-headline-font-family: "Arkhip", Helvetica;
+  --sub-headline-font-size: 24px;
+  --sub-headline-font-style: normal;
+  --sub-headline-font-weight: 400;
+  --sub-headline-letter-spacing: 0px;
+  --sub-headline-line-height: 26px;
+  --systemunfinished: rgba(255, 0, 214, 1);
+  --time-glow: 1px 1px 5px 0px rgba(236, 126, 15, 1), 0px 0px 10px 0px rgba(236, 126, 15, 0.5);
+  --web-shade: 0px 2px 5px 0px rgba(0, 0, 0, 0.59), -1px 9px 9px 0px rgba(0, 0, 0, 0.51),
+    -3px 21px 12px 0px rgba(0, 0, 0, 0.3), -5px 37px 15px 0px rgba(0, 0, 0, 0.09),
+    -8px 57px 16px 0px rgba(0, 0, 0, 0.01);
+}
+

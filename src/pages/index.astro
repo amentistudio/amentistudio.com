@@ -1,43 +1,22 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import GameInfo from "../components/GameInfo.astro";
+import Header from "../components/Header.astro";
+import Newsletter from "../components/Newsletter.astro";
+import Trailer from "../components/Trailer.astro";
+import Layout from "../layouts/Layout.astro";
+import Slider from "../components/Slider.astro";
+import Studio from "../components/Studio.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout title="Amenti Studio">
-	<main class="flex flex-col gap-10 w-full items-center justify-center h-screen">
-    <img class="w-[80%] max-w-2xl" alt="Work in progress image" src="/illustration.png" />
-    <h1 class="title text-5xl">We are digging<br /> a new website!</h1>
-    <div class="flex flex-col items-center">
-      <img class="w-20" alt="Amenti Studio logo" src="/logo.png" />
-      <p class="copyright text-md">
-        &copy; Amenti Studio - All right reserved.
-      </p>
-    </div>
-	</main>
+  <div class="flex flex-col justify-center max-w-7xl mx-auto">
+    <Header />
+    <Newsletter />
+    <Trailer />
+    <GameInfo />
+    <Slider />
+    <Studio />
+    <Footer />
+  </div>
 </Layout>
-
-<style>
-  .title {
-    text-align: center;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-    font-family: Arkhip;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 90%; /* 43.2px */
-    letter-spacing: -0.96px;
-    color: #DEA95D; 
-    background: linear-gradient(262deg, #dea95d, #935B0978);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .copyright {
-    color: #736857;
-    text-align: center;
-
-    font-family: Cagliostro;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 135%; /* 21.6px */
-    letter-spacing: 0.32px;
-  }
-</style>

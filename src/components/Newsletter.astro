@@ -1,0 +1,133 @@
+---
+import { Toaster } from "sonner";
+---
+
+<div class="relative" id="news">
+  <div class="flex absolute top-[-130px] z-10 w-full gap-10 justify-center">
+    <img
+      src="/images/paint_1.png"
+      alt="Paint 1"
+      class="h-[200px] shadow-sm object-cover hover:scale-105"
+      style="filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));"
+    />
+    <img
+      src="/images/paint_2.png"
+      alt="Paint 1"
+      class="h-[200px] shadow-sm object-cover hover:scale-105"
+      style="filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));"
+    />
+    <img
+      src="/images/paint_3.png"
+      alt="Paint 1"
+      class="h-[200px] shadow-sm object-cover hover:scale-105"
+      style="filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));"
+    />
+  </div>
+  <div class="flex flex-col gap-4 h-[500px] mt-[-100px] py-[50px] mask">
+    <h1 class="mt-[220px] text-center text-5xl font-arkhip newsletter-title">
+      Newsletter
+    </h1>
+    <p
+      class="text-center text-white -mt-2 max-w-lg mx-auto text-lg font-cagliostro"
+    >
+      Subscribe to our newsletter to get the latest news.
+    </p>
+    <div class="flex justify-center mt-4 items-center">
+      <form id="subscribe-form">
+        <input
+          type="email"
+          class="input-email"
+          required
+          placeholder="Enter your email"
+        />
+        <button
+          class="ml-1 px-6 py-3 cursor-poiner rounded-full text-[#BDAB87] border-solid shadow-[1px_4px_8px_#00000090,inset_1px_1px_4px_#bdab87] [border-image:linear-gradient(to_bottom,rgb(212,190,153),rgba(212,190,153,0))_1] [background:linear-gradient(180deg,rgba(200,170,111,0.15)_0%,rgba(200,170,111,0)_100%)] hover:scale-110 transition-transform duration-300 ease-in-out"
+          type="submit">Subscribe</button
+        >
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { toast } from "sonner";
+
+  document
+    .getElementById("subscribe-form")
+    .addEventListener("submit", async (e) => {
+      e.preventDefault();
+      try {
+        const email = document.querySelector('input[type="email"]').value;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          throw new Error("Invalid email format");
+        }
+
+        const response = await fetch("/api/subscribe", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        const result = await response.json();
+        console.log(result);
+        if (result.success) {
+          toast.success("Subscribed successfully!");
+        } else if (result.error === "Email already subscribed") {
+          toast.warning("Email already subscribed");
+        } else {
+          throw new Error(result.error);
+        }
+      } catch (error) {
+        toast.error("Subscription failed: " + error);
+      }
+    });
+</script>
+
+<style>
+  .input-email {
+    color: #fff;
+    background: linear-gradient(
+      180deg,
+      rgba(200, 170, 111, 0.15) 0%,
+      rgba(200, 170, 111, 0) 100%
+    );
+    border-image: linear-gradient(
+        to bottom,
+        rgba(212, 190, 153, 0),
+        rgb(212, 190, 153)
+      )
+      1;
+    border-image-slice: 1;
+    border-image-width: 1px;
+    border-radius: 10px;
+    box-shadow:
+      1px 4px 8px #000000,
+      inset -1px -1px 4px #bdab8750;
+    border: 1px solid #bdab87;
+    border-radius: 9999px;
+    padding: 10px 20px;
+    width: 300px;
+    outline: none;
+    focus: outline-none;
+  }
+  .newsletter-title {
+    background: linear-gradient(
+      192.29deg,
+      #bdab87 26.47%,
+      #73603f 95.9%,
+      #342812 155.97%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: var(--shadow-glow);
+  }
+  .mask {
+    background: #0c0c0e no-repeat;
+    background-size: cover;
+    mask-image: url("/images/background_distorted.png");
+    mask-repeat: no-repeat;
+  }
+</style>

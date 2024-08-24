@@ -1,0 +1,81 @@
+---
+import "../styles/tailwind.css";
+import Button from "./Button.astro";
+import PrimaryButton from "./PrimaryButton.astro";
+---
+
+<header
+  class="text-white text-center w-full bg-cover bg-top"
+  style="background-image: url('/images/header_bg.png'); background-size: cover;"
+>
+  <div class="flex items-center justify-between mx-12 sticky top-6 z-[100]">
+    <img src="/images/logo.png" alt="Amenti Studio logo" class="w-[65px]" />
+    <nav
+      class="flex items-center space-x-20 font-cagliostro px-10 py-2 nav-style border border-[#262626] rounded-full"
+    >
+      <a href="#news" class="text-gray-400 hover:text-white">News</a>
+      <a href="#game" class="text-gray-400 hover:text-white">Game</a>
+      <a href="#press-kit" class="text-gray-400 hover:text-white">Press Kit</a>
+      <a href="#studio" class="text-gray-400 hover:text-white">Studio</a>
+      <a href="#contacts" class="text-gray-400 hover:text-white">Contacts</a>
+    </nav>
+    <Button href="https://store.steampowered.com/app/2092970/The_Book_of_Aaru/">
+      <div class="flex flex-row gap-2 items-center">
+        <span class="font-normal text-gray-300">+ Add to wishlist on</span>
+        <img src="/images/steam_logo.svg" alt="Steam logo" class="w-6" />
+      </div>
+    </Button>
+  </div>
+  <div class="relative h-[700px] overflow-hidden">
+    <div class="absolute bottom-[-200px] left-10">
+      <img
+        src="/images/emily.png"
+        alt="Emily the hero of the game"
+        class="w-[600px]"
+      />
+    </div>
+    <div
+      class="absolute right-[200px] top-[60px] flex flex-col gap-4 justify-center items-center max-w-[400px]"
+    >
+      <img
+        src="/images/tboa_logo.png"
+        alt="The Book of Aaru logo"
+        class="w-[150px]"
+      />
+      <h1
+        class="text-white text-5xl font-arkhip"
+        style="background: linear-gradient(192.29deg, #BDAB87 26.47%, #73603F 95.9%, #342812 155.97%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"
+      >
+        New Demo<br /> is Here!
+      </h1>
+      <p class="text-gray-300 text-lg font-cagliostro my-4">
+        Delve into an Egyptian world fused with sci-fi elements. Battle
+        relentless foes, navigate hand-crafted trap puzzles, and face randomly
+        assembled environments in each unique run.
+      </p>
+      <div class="flex flex-row gap-4">
+        <PrimaryButton
+          href="https://store.steampowered.com/app/2092970/The_Book_of_Aaru/"
+          className="w-min"
+        >
+          <div class="flex flex-row gap-2 items-center">
+            <img src="/images/steam_logo.ico" alt="Steam logo" class="w-6" />
+            <span>Play DEMO Now!</span>
+            &rarr;
+          </div>
+        </PrimaryButton>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .nav-style {
+    background: linear-gradient(
+      88.87deg,
+      rgba(12, 12, 14, 0.5) -31.2%,
+      rgba(12, 12, 14, 0.5) 53.03%,
+      rgba(12, 12, 14, 0.5) 135.52%
+    );
+  }
+</style>
