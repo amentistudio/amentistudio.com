@@ -13,6 +13,9 @@ const { content } = Astro.props;
 </div>
 
 <style is:global>
+  #markdown-renderer {
+    @apply text-lg;
+  }
   #markdown-renderer h1 {
     @apply text-3xl font-bold mt-8 mb-4 font-arkhip;
   }
@@ -24,5 +27,23 @@ const { content } = Astro.props;
   }
   #markdown-renderer h4 {
     @apply text-lg font-bold mt-6 mb-2 font-arkhip;
+  }
+  #markdown-renderer p {
+    @apply text-lg my-6 font-cagliostro;
+  }
+  #markdown-renderer ul {
+    @apply list-disc list-inside my-4 font-cagliostro;
+  }
+  #markdown-renderer ol {
+    @apply list-decimal list-inside my-4 font-cagliostro;
+  }
+  #markdown-renderer li {
+    @apply my-2 font-cagliostro list-disc list-outside list-item ml-6 pl-2;
+  }
+  #markdown-renderer a {
+    @apply text-blue-500 hover:text-blue-600;
+  }
+  #markdown-renderer img {
+    @apply my-12;
   }
 </style>

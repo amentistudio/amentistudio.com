@@ -9,37 +9,56 @@ import Navigation from "../../components/Navigation.astro";
 import Footer from "../../components/Footer.astro";
 
 const { slug } = Astro.params;
-console.log("slug", slug);
-if (!slug) {
-  Astro.redirect("/articles");
-  return;
+let article;
+let is404 = true;
+
+if (slug) {
+  article = await getArticleBySlug(slug);
+  is404 = !article;
 }
 
-const article = await getArticleBySlug(slug);
-console.log("article", article);
 ---
 
-<Layout title={article.title}>
+<Layout title={is404 ? "404 - Article Not Found" : article?.title ?? "Article"}>
   <Navigation />
-  <article class="max-w-4xl mx-auto px-4 py-8 text-gray-300 font-cagliostro">
-    <small class="text-gray-500 font-arkhip"
-      >{formatDate(article.metadata.publication_date)}</small
-    >
-    <h1 class="text-4xl font-bold mt-4 mb-6 font-arkhip">{article.title}</h1>
+  <article class="max-w-4xl mx-auto px-4 py-20 text-gray-300 font-cagliostro">
+    {is404 ? (
+      <>
+        <h1 class="text-4xl font-bold mt-4 mb-6 font-arkhip">404 - Article Not Found</h1>
+        <p>We're sorry, but the article you're looking for doesn't exist or has been moved.</p>
+      </>
+    ) : (
+      <>
+        <small class="text-gray-500 font-arkhip">
+          {formatDate(article?.metadata?.publication_date ?? new Date().toISOString())}
+        </small>
+        <h1 class="text-4xl font-bold mt-4 mb-6 font-arkhip">{article?.title}</h1>
 
-    <img
-      src={article.metadata.header_image.imgix_url}
-      alt={article.title}
-      width="1200"
-      height="600"
-      class="w-full h-auto mb-8"
-    />
+        {article?.metadata?.header_image?.imgix_url && (
+          <img
+            src={article.metadata.header_image.imgix_url}
+            alt={article.title ?? "Article header image"}
+            width="1200"
+            height="600"
+            class="w-full h-auto mb-8"
+          />
+        )}
 
-    <MarkdownRenderer content={article.metadata.articles_text} />
+        <MarkdownRenderer content={article?.metadata?.articles_text ?? ""} />
 
-    <ImageGallery images={article.metadata.gallery} />
+        {article?.metadata?.gallery && article.metadata.gallery.length > 0 && (
+          <hr class="my-12 border-gray-700" />
+          <ImageGallery images={article.metadata.gallery} />
+        )}
 
-    <RecommendedArticles articles={article.metadata.recommended_articles} />
+        {article?.metadata?.recommended_articles &&
+          article.metadata.recommended_articles.length > 0 && (
+            <RecommendedArticles
+              articles={article.metadata.recommended_articles}
+            />
+          )}
+      </>
+    )}
   </article>
   <Footer />
 </Layout>

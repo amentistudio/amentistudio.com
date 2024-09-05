@@ -20,23 +20,27 @@ interface Article {
   };
 }
 
-export async function getArticleBySlug(slug: string): Promise<Article> {
-  const { object: article } = await cosmic.objects
-    .findOne({
-      type: "articles",
-      slug,
-    })
-    .props([
-      "title",
-      "slug",
-      "metadata.publication_date",
-      "metadata.header_image",
-      "metadata.articles_text",
-      "metadata.gallery",
-      "metadata.recommended_articles",
-    ]);
-  console.log("article", article);
-  return article as Article;
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  try {
+    const { object: article } = await cosmic.objects
+      .findOne({
+        type: "articles",
+        slug,
+      })
+      .props([
+        "title",
+        "slug",
+        "metadata.publication_date",
+        "metadata.header_image",
+        "metadata.articles_text",
+        "metadata.gallery",
+        "metadata.recommended_articles",
+      ]);
+    return article as Article;
+  } catch (error) {
+    console.error("Error fetching article by slug:", error);
+    return null;
+  }
 }
 
 export async function getArticles(): Promise<Article[]> {
