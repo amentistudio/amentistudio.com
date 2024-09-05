@@ -1,8 +1,8 @@
 ---
 import { getFeaturedNews } from "../actions/featured_news";
 import "../styles/tailwind.css";
-import Button from "./Button.astro";
 import PrimaryButton from "./PrimaryButton.astro";
+import Navigation from "./Navigation.astro";
 
 const featuredNews = await getFeaturedNews();
 const currentNews = featuredNews[0];
@@ -14,24 +14,7 @@ const restNews = featuredNews.slice(1);
   class="text-white text-center w-full bg-cover bg-top"
   style=`background-image: url(${currentNews.metadata.main_image.url}); background-size: cover;`
 >
-  <div class="flex items-center justify-between mx-12 sticky top-6 z-[100]">
-    <img src="/images/logo.png" alt="Amenti Studio logo" class="w-[65px]" />
-    <nav
-      class="flex items-center space-x-20 font-cagliostro px-10 py-2 nav-style border border-[#262626] rounded-full"
-    >
-      <a href="#news" class="text-gray-400 hover:text-white">News</a>
-      <a href="#game" class="text-gray-400 hover:text-white">Game</a>
-      <a href="#press-kit" class="text-gray-400 hover:text-white">Press Kit</a>
-      <a href="#studio" class="text-gray-400 hover:text-white">Studio</a>
-      <a href="#contacts" class="text-gray-400 hover:text-white">Contacts</a>
-    </nav>
-    <Button href="https://store.steampowered.com/app/2092970/The_Book_of_Aaru/">
-      <div class="flex flex-row gap-2 items-center">
-        <span class="font-normal text-gray-300">+ Add to wishlist on</span>
-        <img src="/images/steam_logo.svg" alt="Steam logo" class="w-6" />
-      </div>
-    </Button>
-  </div>
+  <Navigation />
   <div class="relative h-[700px] overflow-hidden">
     <div class="absolute bottom-[-200px] left-10">
       <img
@@ -130,14 +113,3 @@ const restNews = featuredNews.slice(1);
     });
   });
 </script>
-
-<style>
-  .nav-style {
-    background: linear-gradient(
-      88.87deg,
-      rgba(12, 12, 14, 0.5) -31.2%,
-      rgba(12, 12, 14, 0.5) 53.03%,
-      rgba(12, 12, 14, 0.5) 135.52%
-    );
-  }
-</style>

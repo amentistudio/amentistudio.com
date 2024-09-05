@@ -1,0 +1,45 @@
+---
+import { getArticleBySlug } from "../../actions/articles";
+import { formatDate } from "../../utils/dateFormatter";
+import MarkdownRenderer from "../../components/MarkdownRenderer.astro";
+import ImageGallery from "../../components/ImageGallery.astro";
+import RecommendedArticles from "../../components/RecommendedArticles.astro";
+import Layout from "../../layouts/Layout.astro";
+import Navigation from "../../components/Navigation.astro";
+import Footer from "../../components/Footer.astro";
+
+const { slug } = Astro.params;
+console.log("slug", slug);
+if (!slug) {
+  Astro.redirect("/articles");
+  return;
+}
+
+const article = await getArticleBySlug(slug);
+console.log("article", article);
+---
+
+<Layout title={article.title}>
+  <Navigation />
+  <article class="max-w-4xl mx-auto px-4 py-8 text-gray-300 font-cagliostro">
+    <small class="text-gray-500 font-arkhip"
+      >{formatDate(article.metadata.publication_date)}</small
+    >
+    <h1 class="text-4xl font-bold mt-4 mb-6 font-arkhip">{article.title}</h1>
+
+    <img
+      src={article.metadata.header_image.imgix_url}
+      alt={article.title}
+      width="1200"
+      height="600"
+      class="w-full h-auto mb-8"
+    />
+
+    <MarkdownRenderer content={article.metadata.articles_text} />
+
+    <ImageGallery images={article.metadata.gallery} />
+
+    <RecommendedArticles articles={article.metadata.recommended_articles} />
+  </article>
+  <Footer />
+</Layout>

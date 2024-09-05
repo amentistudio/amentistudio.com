@@ -36,7 +36,9 @@ const { title } = Astro.props;
   </head>
   <body>
     <Toaster richColors position="top-right" client:load />
-    <slot />
+    <div class="max-w-7xl mx-auto">
+      <slot />
+    </div>
   </body>
 </html>
 <style is:global>
