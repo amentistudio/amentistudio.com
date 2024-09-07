@@ -11,6 +11,9 @@ importers:
       '@astrojs/check':
         specifier: ^0.9.3
         version: 0.9.3(typescript@5.5.4)
+      '@astrojs/markdown-component':
+        specifier: ^1.0.5
+        version: 1.0.5
       '@astrojs/node':
         specifier: ^8.3.3
         version: 8.3.3(astro@4.15.1(rollup@4.21.2)(typescript@5.5.4))
@@ -23,6 +26,9 @@ importers:
       '@astrojs/vercel':
         specifier: ^7.8.0
         version: 7.8.0(astro@4.15.1(rollup@4.21.2)(typescript@5.5.4))(react@18.3.1)
+      '@astropub/md':
+        specifier: ^1.0.0
+        version: 1.0.0(@astrojs/markdown-remark@5.2.0)
       '@cosmicjs/sdk':
         specifier: ^1.0.11
         version: 1.0.11
@@ -94,6 +100,9 @@ packages:
       prettier-plugin-astro:
         optional: true
 
+  '@astrojs/markdown-component@1.0.5':
+    resolution: {integrity: sha512-e7pzVfEZmjyZMmKGwLbfds36idAt9Yi8c0N0VQw2cVEgK8QdQecZLc07JvUSugoZxINtoVA0Afpm8EcIP52Ncw==, tarball: https://registry.npmjs.org/@astrojs/markdown-component/-/markdown-component-1.0.5.tgz}
+
   '@astrojs/markdown-remark@5.2.0':
     resolution: {integrity: sha512-vWGM24KZXz11jR3JO+oqYU3T2qpuOi4uGivJ9SQLCAI01+vEkHC60YJMRvHPc+hwd60F7euNs1PeOEixIIiNQw==, tarball: https://registry.npmjs.org/@astrojs/markdown-remark/-/markdown-remark-5.2.0.tgz}
 
@@ -132,6 +141,11 @@ packages:
 
   '@astrojs/yaml2ts@0.2.1':
     resolution: {integrity: sha512-CBaNwDQJz20E5WxzQh4thLVfhB3JEEGz72wRA+oJp6fQR37QLAqXZJU0mHC+yqMOQ6oj0GfRPJrz6hjf+zm6zA==, tarball: https://registry.npmjs.org/@astrojs/yaml2ts/-/yaml2ts-0.2.1.tgz}
+
+  '@astropub/md@1.0.0':
+    resolution: {integrity: sha512-++urcyulQogbLAF0VC2rEp6qLUfnRX9iaDREAkN1su9fF8V84DVaMHbQXn7qqQ27wYT5AVVeoK+4+vggYYVbQg==, tarball: https://registry.npmjs.org/@astropub/md/-/md-1.0.0.tgz}
+    peerDependencies:
+      '@astrojs/markdown-remark': ^5
 
   '@babel/code-frame@7.24.7':
     resolution: {integrity: sha512-BcYH1CVJBO9tvyIZ2jVeXgSIMvGZ2FDRvDdOIVQyuklNKSsx+eppDEBq/g47Ayw+RqNFE+URvOShmf+f/qwAlA==, tarball: https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.24.7.tgz}
@@ -2580,6 +2594,8 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
+  '@astrojs/markdown-component@1.0.5': {}
+
   '@astrojs/markdown-remark@5.2.0':
     dependencies:
       '@astrojs/prism': 3.1.0
@@ -2668,6 +2684,10 @@ snapshots:
   '@astrojs/yaml2ts@0.2.1':
     dependencies:
       yaml: 2.5.0
+
+  '@astropub/md@1.0.0(@astrojs/markdown-remark@5.2.0)':
+    dependencies:
+      '@astrojs/markdown-remark': 5.2.0
 
   '@babel/code-frame@7.24.7':
     dependencies:
