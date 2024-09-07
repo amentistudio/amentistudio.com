@@ -1,5 +1,5 @@
 ---
-const { href, class: className } = Astro.props;
+const { href, class: className, id } = Astro.props;
 ---
 
 <a
@@ -8,6 +8,7 @@ const { href, class: className } = Astro.props;
   rel="noopener noreferrer"
   class={`px-6 py-3 cursor-pointer rounded-full text-gray-900 font-bold border-solid shadow-[1px_4px_8px_#00000090,inset_1px_1px_4px_#bdab87] hover:scale-110 transition-transform duration-300 ease-in-out ${className}`}
   style="background: linear-gradient(97.45deg, #BDAB87 19.27%, #73603F 78.5%, #342812 159.76%);"
+  id={id}
 >
   <slot />
 </a>
