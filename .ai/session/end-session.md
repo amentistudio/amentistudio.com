@@ -1,6 +1,10 @@
 # End Session Instructions
 
-1. Create a new file: `.ai/status/YYYY-MM-DD.md`
+1. Create a new file: `.ai/status/YYYY-MM-DD-N.md`, where:
+
+   - YYYY-MM-DD is the current date
+   - N is the session number for the day, auto-incrementing (e.g., 1, 2, 3, ...)
+   - Check existing files for the current date and increment N accordingly
 
 2. Structure the update with sections:
 
