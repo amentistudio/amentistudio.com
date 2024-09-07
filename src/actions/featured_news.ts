@@ -5,11 +5,17 @@ interface FeaturedNews {
   slug: string;
   created_at: string;
   metadata: {
-    main_image: {
+    background_image: {
       url: string;
+      imgix_url: string;
     };
-    top_image: {
+    text_logo: {
       url: string;
+      imgix_url: string;
+    };
+    teaser_image: {
+      url: string;
+      imgix_url: string;
     };
     text: string;
     cta_title: string;
@@ -26,8 +32,9 @@ export async function getFeaturedNews(): Promise<FeaturedNews[]> {
       "title",
       "slug",
       "created_at",
-      "metadata.main_image",
-      "metadata.top_image",
+      "metadata.background_image",
+      "metadata.teaser_image",
+      "metadata.text_logo",
       "metadata.text",
       "metadata.cta_title",
       "metadata.cta_url",

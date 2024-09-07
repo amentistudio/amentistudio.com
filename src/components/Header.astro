@@ -6,13 +6,12 @@ import Navigation from "./Navigation.astro";
 
 const featuredNews = await getFeaturedNews();
 const currentNews = featuredNews[0];
-const restNews = featuredNews.slice(1);
 ---
 
 <header
   id="header"
   class="text-white text-center w-full bg-cover bg-top"
-  style=`background-image: url(${currentNews.metadata.main_image.url}); background-size: cover;`
+  style=`background-image: url(${currentNews.metadata.background_image.imgix_url}); background-size: cover;`
 >
   <Navigation />
   <div class="relative h-[700px] overflow-hidden">
@@ -24,14 +23,8 @@ const restNews = featuredNews.slice(1);
       />
     </div>
     <div
-      class="absolute right-[200px] top-[60px] flex flex-col gap-4 justify-center items-center max-w-[400px]"
+      class="absolute right-[200px] top-[100px] flex flex-col gap-4 justify-center items-center max-w-[400px]"
     >
-      <img
-        id="news-top-image"
-        src={currentNews.metadata.top_image.url}
-        alt={currentNews.title}
-        class="w-[150px]"
-      />
       <h1
         id="news-title"
         class="text-white text-5xl font-arkhip"
@@ -64,13 +57,13 @@ const restNews = featuredNews.slice(1);
 <div class="relative" id="news">
   <div class="flex absolute top-[-130px] z-10 w-full gap-10 justify-center">
     {
-      restNews.map((news: any, index: number) => (
+      featuredNews.map((news: any, index: number) => (
         <img
-          src={news.metadata.main_image.url}
+          src={news.metadata.teaser_image.imgix_url}
           alt={news.title}
           class="h-[200px] shadow-sm object-cover hover:scale-105 cursor-pointer"
           style="filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));"
-          data-news-index={index + 1}
+          data-news-index={index}
         />
       ))
     }
@@ -86,12 +79,7 @@ const restNews = featuredNews.slice(1);
 
     // Update header background
     const header = document.getElementById("header");
-    header.style.backgroundImage = `url(${news.metadata.main_image.url})`;
-
-    // Update news content
-    const topImage = document.getElementById("news-top-image");
-    topImage.src = news.metadata.top_image.url;
-    topImage.alt = news.title;
+    header.style.backgroundImage = `url(${news.metadata.background_image.imgix_url})`;
 
     const title = document.getElementById("news-title");
     title.textContent = news.title;
