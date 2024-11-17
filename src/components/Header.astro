@@ -15,15 +15,8 @@ const currentNews = featuredNews[0];
 >
   <Navigation />
   <div class="relative h-[700px] overflow-hidden">
-    <div class="absolute bottom-[-200px] left-10">
-      <img
-        src="/images/emily.png"
-        alt="Emily the hero of the game"
-        class="w-[600px]"
-      />
-    </div>
     <div
-      class="absolute right-[200px] top-[100px] flex flex-col gap-4 justify-center items-center max-w-[400px]"
+      class="absolute right-[200px] top-[100px] flex flex-col gap-4 justify-center items-center max-w-[550px] bg-black/50 backdrop-blur-sm p-10 rounded-xl shadow-lg"
     >
       <h1
         id="news-title"
@@ -55,17 +48,67 @@ const currentNews = featuredNews[0];
 </header>
 
 <div class="relative" id="news">
-  <div class="flex absolute top-[-130px] z-10 w-full gap-10 justify-center">
+  <div
+    class="flex absolute top-[-130px] w-full gap-10 justify-center items-center"
+  >
     {
-      featuredNews.map((news: any, index: number) => (
-        <img
-          src={news.metadata.teaser_image.imgix_url}
-          alt={news.title}
-          class="h-[200px] shadow-sm object-cover hover:scale-105 cursor-pointer"
-          style="filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));"
-          data-news-index={index}
-        />
-      ))
+      featuredNews.length > 3 && (
+        <button
+          class="carousel-arrow left-arrow opacity-50 hover:opacity-100 disabled:opacity-25 z-20"
+          disabled
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-8 h-8 text-white"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 19.5L8.25 12l7.5-7.5"
+            />
+          </svg>
+        </button>
+      )
+    }
+    <div
+      class="flex gap-10 overflow-hidden max-w-[800px] z-10 h-[210px] pt-1 pl-1"
+      id="news-container"
+    >
+      {
+        featuredNews.map((news: any, index: number) => (
+          <img
+            src={news.metadata.teaser_image.imgix_url}
+            alt={news.title}
+            class="h-[200px] shadow-sm object-cover hover:scale-105 cursor-pointer flex-shrink-0 ring-1 ring-yellow-500/20 rounded-lg"
+            style="filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));"
+            data-news-index={index}
+          />
+        ))
+      }
+    </div>
+    {
+      featuredNews.length > 3 && (
+        <button class="carousel-arrow right-arrow opacity-50 hover:opacity-100 z-20">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-8 h-8 text-white"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.25 4.5l7.5 7.5-7.5 7.5"
+            />
+          </svg>
+        </button>
+      )
     }
   </div>
 </div>
@@ -94,6 +137,42 @@ const currentNews = featuredNews[0];
     ctaTitle.textContent = news.metadata.cta_title;
   }
 
+  const container = document.getElementById("news-container");
+  const leftArrow = document.querySelector(".left-arrow");
+  const rightArrow = document.querySelector(".right-arrow");
+  let currentSlide = 0;
+
+  function updateArrows() {
+    if (leftArrow) leftArrow.disabled = currentSlide === 0;
+    if (rightArrow)
+      rightArrow.disabled = currentSlide >= featuredNews.length - 2;
+  }
+
+  function slide(direction) {
+    const slideAmount = 390;
+    currentSlide = Math.max(
+      0,
+      Math.min(currentSlide + direction, featuredNews.length - 2)
+    );
+
+    // Get all images and update their positions
+    const images = container.querySelectorAll("img");
+    images.forEach((img, index) => {
+      img.style.transform = `translateX(${-currentSlide * slideAmount}px)`;
+      img.style.transition = "transform 0.3s ease-in-out";
+    });
+
+    updateArrows();
+  }
+
+  if (leftArrow) {
+    leftArrow.addEventListener("click", () => slide(-1));
+  }
+
+  if (rightArrow) {
+    rightArrow.addEventListener("click", () => slide(1));
+  }
+
   document.querySelectorAll("#news img").forEach((img) => {
     img.addEventListener("click", (event) => {
       const index = parseInt(event.target.getAttribute("data-news-index"));
@@ -101,3 +180,21 @@ const currentNews = featuredNews[0];
     });
   });
 </script>
+
+<style>
+  #news-container {
+    position: relative;
+  }
+
+  #news-container img {
+    position: relative;
+    transform: translateX(0);
+  }
+
+  .carousel-arrow {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 0.5rem;
+    transition: opacity 0.2s;
+  }
+</style>

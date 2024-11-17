@@ -39,7 +39,6 @@ export async function getFeaturedNews(): Promise<FeaturedNews[]> {
       "metadata.cta_title",
       "metadata.cta_url",
     ])
-    .limit(4)
     .sort("-created_at");
 
   return featuredNews as FeaturedNews[];
