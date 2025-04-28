@@ -1,17 +1,13 @@
 ---
-import { getFeaturedNews } from "../actions/featured_news";
 import "../styles/tailwind.css";
 import PrimaryButton from "./PrimaryButton.astro";
 import Navigation from "./Navigation.astro";
-
-const featuredNews = await getFeaturedNews();
-const currentNews = featuredNews[0];
 ---
 
 <header
   id="header"
   class="text-white text-center w-full bg-cover bg-top"
-  style=`background-image: url(${currentNews.metadata.background_image.imgix_url}); background-size: cover;`
+  style="background-image: url(/images/header_bg.png); background-size: cover;"
 >
   <Navigation />
   <div class="relative h-[700px] overflow-hidden">
@@ -19,26 +15,24 @@ const currentNews = featuredNews[0];
       class="absolute right-[200px] top-[100px] flex flex-col gap-4 justify-center items-center max-w-[550px] bg-black/50 backdrop-blur-sm p-10 rounded-xl shadow-lg"
     >
       <h1
-        id="news-title"
         class="text-white text-5xl font-arkhip"
         style="background: linear-gradient(192.29deg, #BDAB87 26.47%, #73603F 95.9%, #342812 155.97%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"
       >
-        {currentNews.title}
+        The Book of Aaru
       </h1>
       <p
-        id="news-description"
         class="text-gray-300 text-lg font-cagliostro my-4"
       >
-        {currentNews.metadata.text}
+        Embark on an epic journey in The Book of Aaru, an action-packed rogue-lite
+        game where ancient Egyptian mythology meets advanced sci-fi.
       </p>
       <div class="flex flex-row gap-4">
         <PrimaryButton
-          id="news-cta-button"
-          href={currentNews.metadata.cta_url}
+          href="https://store.steampowered.com/app/2092970/The_Book_of_Aaru/"
           className="w-min"
         >
           <div class="flex flex-row gap-2 items-center">
-            <span id="news-cta-title">{currentNews.metadata.cta_title}</span>
+            <span>Visit Steam Page</span>
             &rarr;
           </div>
         </PrimaryButton>
@@ -46,155 +40,3 @@ const currentNews = featuredNews[0];
     </div>
   </div>
 </header>
-
-<div class="relative" id="news">
-  <div
-    class="flex absolute top-[-130px] w-full gap-10 justify-center items-center"
-  >
-    {
-      featuredNews.length > 3 && (
-        <button
-          class="carousel-arrow left-arrow opacity-50 hover:opacity-100 disabled:opacity-25 z-20"
-          disabled
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-8 h-8 text-white"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 19.5L8.25 12l7.5-7.5"
-            />
-          </svg>
-        </button>
-      )
-    }
-    <div
-      class="flex gap-10 overflow-hidden max-w-[800px] z-10 h-[210px] pt-1 pl-1"
-      id="news-container"
-    >
-      {
-        featuredNews.map((news: any, index: number) => (
-          <img
-            src={news.metadata.teaser_image.imgix_url}
-            alt={news.title}
-            class="h-[200px] shadow-sm object-cover hover:scale-105 cursor-pointer flex-shrink-0 ring-1 ring-yellow-500/20 rounded-lg"
-            style="filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));"
-            data-news-index={index}
-          />
-        ))
-      }
-    </div>
-    {
-      featuredNews.length > 3 && (
-        <button class="carousel-arrow right-arrow opacity-50 hover:opacity-100 z-20">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-8 h-8 text-white"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M8.25 4.5l7.5 7.5-7.5 7.5"
-            />
-          </svg>
-        </button>
-      )
-    }
-  </div>
-</div>
-
-<script define:vars={{ featuredNews }}>
-  let currentNewsIndex = 0;
-
-  function updateCurrentNews(index) {
-    currentNewsIndex = index;
-    const news = featuredNews[index];
-
-    // Update header background
-    const header = document.getElementById("header");
-    header.style.backgroundImage = `url(${news.metadata.background_image.imgix_url})`;
-
-    const title = document.getElementById("news-title");
-    title.textContent = news.title;
-
-    const description = document.getElementById("news-description");
-    description.textContent = news.metadata.text;
-
-    const ctaButton = document.getElementById("news-cta-button");
-    ctaButton.href = news.metadata.cta_url;
-
-    const ctaTitle = document.getElementById("news-cta-title");
-    ctaTitle.textContent = news.metadata.cta_title;
-  }
-
-  const container = document.getElementById("news-container");
-  const leftArrow = document.querySelector(".left-arrow");
-  const rightArrow = document.querySelector(".right-arrow");
-  let currentSlide = 0;
-
-  function updateArrows() {
-    if (leftArrow) leftArrow.disabled = currentSlide === 0;
-    if (rightArrow)
-      rightArrow.disabled = currentSlide >= featuredNews.length - 2;
-  }
-
-  function slide(direction) {
-    const slideAmount = 390;
-    currentSlide = Math.max(
-      0,
-      Math.min(currentSlide + direction, featuredNews.length - 2)
-    );
-
-    // Get all images and update their positions
-    const images = container.querySelectorAll("img");
-    images.forEach((img, index) => {
-      img.style.transform = `translateX(${-currentSlide * slideAmount}px)`;
-      img.style.transition = "transform 0.3s ease-in-out";
-    });
-
-    updateArrows();
-  }
-
-  if (leftArrow) {
-    leftArrow.addEventListener("click", () => slide(-1));
-  }
-
-  if (rightArrow) {
-    rightArrow.addEventListener("click", () => slide(1));
-  }
-
-  document.querySelectorAll("#news img").forEach((img) => {
-    img.addEventListener("click", (event) => {
-      const index = parseInt(event.target.getAttribute("data-news-index"));
-      updateCurrentNews(index);
-    });
-  });
-</script>
-
-<style>
-  #news-container {
-    position: relative;
-  }
-
-  #news-container img {
-    position: relative;
-    transform: translateX(0);
-  }
-
-  .carousel-arrow {
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    padding: 0.5rem;
-    transition: opacity 0.2s;
-  }
-</style>
